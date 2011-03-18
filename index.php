@@ -120,7 +120,7 @@ class MySpecialSponge extends Sponge2Rdf implements SpongeBuilder {
             
 
             // add a triple for a resource
-            $this->graph->add_resource_triple($this->uri->get_thing_uri(1), RDF_TYPE, "foaf:Person");
+            $this->graph->add_resource_triple($this->uri->get_thing_uri(1), RDF_TYPE, FOAF_PREFIX."Person");
 
             // add a triple for a literal
             $this->graph->add_literal_triple($this->uri->get_thing_uri(1), FOAF_PREFIX."family_name", $data['surname']);
