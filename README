@@ -3,6 +3,10 @@ Tim Hodson tim@timhodson.com
 
 A simple framework that allows you to get data from one place (soak it up bit by bit), and then squeeze it out as RDF. You'll have some work to do, mapping your data to an RDF model, and setting up this code on a server.
 
+Dependancies:
+Moriarty (http://code.google.com/p/moriarty/)
+ARC (https://github.com/semsol/arc2/wiki)
+
 Architecture:
 Apache2 with mod_rewrite and PHP5 
 
@@ -16,7 +20,7 @@ Which will be redirected to...
 	http://.../doc/container1/key.extension
 You can use up to four contiainers...
 	http://.../id/container1/container2/container3/container4/key.extension
-And either use content negotiation or the file extension to specif the response format.
+And either use content negotiation or the file extension to specify the response format.
 
 Installation:
 * Place the files in a directory on your webserver.
