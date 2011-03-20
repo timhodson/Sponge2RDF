@@ -1,19 +1,42 @@
-Sponge to RDF
+# Sponge to RDF #
 Tim Hodson tim@timhodson.com
 
 A simple framework that allows you to get data from one place (soak it up bit by bit), and then squeeze it out as RDF. You'll have some work to do, mapping your data to an RDF model, and setting up this code on a server.
 
-Dependancies:
+## Dependancies ##
 Moriarty (http://code.google.com/p/moriarty/)
 ARC (https://github.com/semsol/arc2/wiki)
 
-Architecture:
+The default locations these are expected to be in are:
+/var/www/lib/moriarty
+/var/www/lib/ARC
+
+## Architecture ##
 Apache2 with mod_rewrite and PHP5 
 
 All requests to the server get directed to index.php
 Sponge2RDF then does all the parsing of the URI and content negotiation to return some data from the key in the URI.
 
-Assumptions:
+You may want to add something like this to your apache server's VirtualHost directive:
+
+Alias /doc/ "/var/www/sponge2rdf/"
+<Directory "/var/www/sponge2rdf/">
+    Options Indexes MultiViews FollowSymLinks
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+</Directory>
+
+Alias /id/ "/var/www/sponge2rdf/"
+<Directory "/var/www/sponge2rdf/">
+    Options Indexes MultiViews FollowSymLinks
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+</Directory>
+
+
+## Assumptions ##
 'cool URIs' like this are supported...
 	http://.../id/container1/key.extension
 Which will be redirected to...
@@ -21,12 +44,13 @@ Which will be redirected to...
 You can use up to four contiainers...
 	http://.../id/container1/container2/container3/container4/key.extension
 And either use content negotiation or the file extension to specify the response format.
+The key will be available for you to use within your own Sponge2RDF class extension as the lookup key in your own data.
 
-Installation:
+## Installation ##
 * Place the files in a directory on your webserver.
 * Make sure the .htaccess file is present and correct.
 * Make sure that AllowOverrides All is present in your Apache vhost config file.
 * Read through index.php and follow the code to see what's happenning.
 * Now write your own version of index.php
 
-More details perhaps later :)
+More details later as people start asking questions :)
